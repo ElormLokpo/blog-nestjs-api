@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { BlogModule } from './blog/blog.module';
+import { ContentModule } from './content/content.module';
 
 @Module({
   imports: [
@@ -11,7 +12,8 @@ import { BlogModule } from './blog/blog.module';
       isGlobal:true
     }),
     MongooseModule.forRoot(process.env.MONGO_URL),
-    BlogModule
+    BlogModule,
+    ContentModule
   ],
   controllers: [AppController],
   providers: [AppService],

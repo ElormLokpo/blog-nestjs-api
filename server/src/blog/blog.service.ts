@@ -7,23 +7,45 @@ import { BlogDTO  } from './blog.dto';
 export class BlogService{
     constructor( @InjectModel('BlogModel') private readonly blogmodel: Model<BlogDTO> ){}
 
-    async createBlog(title: string, author:string, main_img:string, content: string[]){
-        const blogData = await this.blogmodel.create({title, author, main_img, content});
+    async createBlog(title: string, author:string, main_img:string, content: any[], description:string){
+        const blogData = await this.blogmodel.create({title, author, main_img, content, description});
         return blogData;
     }
 
     async getAllBlogs(){
-        const blogData = await this.blogmodel.find();
+        const blogData = await this.blogmodel.find().populate('content');
         return blogData;
     }
 
-    async getBlog(id:string){
-        const blogData = await this.blogmodel.findById(id);
+    async getBlog(id:string,typeOne?:string){
+        let blogData;
+
+        blogData = await (await this.blogmodel.findById(id)).populate('content');
+        
+        if (typeOne == 'y'){
+            blogData = await this.blogmodel.findById(id);
+        }
         return blogData;
     }
+
+    async updateBlog(id:string,title: string, author:string, main_img:string, content: any[], description:string){
+        const blogData = await this.blogmodel.findByIdAndUpdate(id, {title, author, main_img, content, description}, {new:true});
+        return blogData;
+    }
+
 
     async deleteBlog(id:string){
         const blogData = await this.blogmodel.findByIdAndDelete(id);
         return blogData;
+    }
+    
+    async addContentToBlog(contetnid:any, blogid:any){
+        const blogData = await this.blogmodel.findById(blogid);
+
+        let currentContent = [...blogData.content];
+        currentContent.push(contetnid);
+
+        const updatedBlog = await this.blogmodel.findByIdAndUpdate(blogid, {content: currentContent}, {new:true})
+        return updatedBlog;
     }
 }
