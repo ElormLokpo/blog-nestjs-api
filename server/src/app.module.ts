@@ -7,17 +7,19 @@ import { BlogModule } from './blog/blog.module';
 import { ContentModule } from './content/content.module';
 import { CommentsModule } from './comments/comments.module';
 import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal:true
     }),
-    MongooseModule.forRoot(),
+    MongooseModule.forRoot(''),
     BlogModule,
     ContentModule,
     CommentsModule,
-    UsersModule
+    UsersModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],
