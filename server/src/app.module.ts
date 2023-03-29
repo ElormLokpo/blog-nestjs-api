@@ -6,16 +6,18 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { BlogModule } from './blog/blog.module';
 import { ContentModule } from './content/content.module';
 import { CommentsModule } from './comments/comments.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal:true
     }),
-    MongooseModule.forRoot(process.env.MONGO_URL),
+    MongooseModule.forRoot(),
     BlogModule,
     ContentModule,
-    CommentsModule
+    CommentsModule,
+    UsersModule
   ],
   controllers: [AppController],
   providers: [AppService],

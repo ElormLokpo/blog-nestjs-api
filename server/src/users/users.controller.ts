@@ -5,8 +5,11 @@ import { UserService } from './users.service';
 export class UserController{
     constructor( private readonly userservice: UserService ){}
 
-    @Post()
-    async register(username:string, password:string){
+    @Post('register')
+    async register(
+        @Body('username') username:string, 
+        @Body('password') password:string
+        ){
         const userdata = await this.userservice.registerUser(username,password);
         return userdata;
     }
