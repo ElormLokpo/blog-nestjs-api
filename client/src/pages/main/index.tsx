@@ -1,16 +1,16 @@
 import React from 'react'
-import SignIn from '../auth/signin';
-import SignUp from '../auth/signup';
-import AddBlogContent from '../blogcontent';
-import BlogPage from '../blogpage';
-import HomePage from '../homepage';
-
+import Footer from '../../components/footer'
+import TopSection from '../../components/topsection';
+import { Outlet } from 'react-router-dom';
 
 function Main() {
   return (
     <>
-      <SignIn />
+      <TopSection />
+        <Outlet />
+      <Footer />
     </>
+    
   )
 }
 

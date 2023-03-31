@@ -1,6 +1,4 @@
 import React, {useState} from 'react';
-import TopSection from '../../components/topsection';
-import Footer from '../../components/footer';
 
 function AddBlogContent() {
     const [contentType, setContentType] = useState<string>('main-img')
@@ -33,7 +31,7 @@ function AddBlogContent() {
   return (
     <>
     <div>
-         <TopSection />
+       
 
       <div className='header-section mb-24' style = {{
           backgroundImage: `url(${backgroundImg})`
@@ -92,7 +90,7 @@ function AddBlogContent() {
 </div>
 
 
-<Footer />
+
 
 </div>
     </>

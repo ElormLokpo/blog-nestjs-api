@@ -1,6 +1,5 @@
 import React from 'react'
-import TopSection from '../../components/topsection';
-import Footer from '../../components/footer';
+
 
 function BlogPage() {
 
@@ -10,7 +9,7 @@ function BlogPage() {
 
   return (
     <div>
-    <TopSection />
+  
 
     <div className='header-section mb-24' style = {{
         backgroundImage: `url(${backgroundImg})`
@@ -122,7 +121,7 @@ function BlogPage() {
         </ul>
       </div>
 
-    <Footer />
+    
 
 </div>
   )

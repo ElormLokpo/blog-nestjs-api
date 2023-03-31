@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom';
-import Main from './pages/main';
 import './assets/styles/main.scss';
+import MainRoute from './routes';
 
-ReactDOM.render(<Main />, document.querySelector('#root'))
+ReactDOM.render(<MainRoute />, document.querySelector('#root'))

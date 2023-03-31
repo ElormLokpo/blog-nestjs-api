@@ -15,9 +15,13 @@ function SignIn() {
                 <input type = 'text' className='border py-2'/>
             </div>
 
-            <div className='flex flex-col mb-9'>
+            <div className='flex flex-col mb-6'>
                 <label className='text-xs mb-2'>Password:</label>
                 <input type = 'text' className='border py-2'/>
+            </div>
+
+            <div className='mb-9'>
+                <p className='text-blue-400 text-sm'>Don't have an account? Sign Up</p>
             </div>
 
             <div className='mb-5'>

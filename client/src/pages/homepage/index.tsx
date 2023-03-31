@@ -1,7 +1,5 @@
 import React from 'react';
 import Card from '../../components/card';
-import Footer from '../../components/footer';
-import TopSection from '../../components/topsection';
 
 
 const HomePage = ()=> {
@@ -12,7 +10,7 @@ const HomePage = ()=> {
   
   return (
     <div>
-        <TopSection />
+
 
         <div className='header-section mb-44' style = {{
             backgroundImage: `url(${backgroundImg})`
@@ -99,7 +97,7 @@ const HomePage = ()=> {
           </div>
         </div>
 
-        <Footer />
+   
 
     </div>
   )
