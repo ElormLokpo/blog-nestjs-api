@@ -1,5 +1,7 @@
 import React from 'react';
 import Card from '../../components/card';
+import Footer from '../../components/footer';
+import TopSection from '../../components/topsection';
 
 
 const HomePage = ()=> {
@@ -10,11 +12,7 @@ const HomePage = ()=> {
   
   return (
     <div>
-        <div className='flex flex-col items-center my-10 mb-15'>
-            <p className='text-sm'>My Blog</p>
-            <p className='text-3xl font-semibold mb-2 tracking-tighter'>Some Really Big Text Apparently</p>
-            <p className='text-sm font-light'>Borem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </div>
+        <TopSection />
 
         <div className='header-section mb-44' style = {{
             backgroundImage: `url(${backgroundImg})`
@@ -68,7 +66,9 @@ const HomePage = ()=> {
                       </div>
 
                       <p className='text-md font-semibold mb-1 tracking-tighter'>Some Really Big Text Apparently</p>
-                      <p className='text-sm leading-6'>Torem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti Torem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.</p>
+                      <p className='text-sm leading-6 mb-2'>Torem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti Torem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.</p>
+                      <p className='text-sm leading-6 mb-2'>Torem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti Torem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.</p>
+
                   </div>
               </div>
           </div>
@@ -86,7 +86,9 @@ const HomePage = ()=> {
                       </div>
 
                       <p className='text-md font-semibold mb-1 tracking-tighter'>Some Really Big Text Apparently</p>
-                      <p className='text-sm leading-6'>Torem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti Torem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.</p>
+                      <p className='text-sm leading-6 mb-2'>Torem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti Torem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.</p>
+                      <p className='text-sm leading-6 mb-2'>Torem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti Torem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.</p>
+                     
                   </div>
               </div>
 
@@ -96,6 +98,8 @@ const HomePage = ()=> {
 
           </div>
         </div>
+
+        <Footer />
 
     </div>
   )
