@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './typography';
+@import './homepage/homepage';
+
+body{
+    margin: 1em 10em;
+}
