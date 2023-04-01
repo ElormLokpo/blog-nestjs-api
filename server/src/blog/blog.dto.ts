@@ -1,7 +1,7 @@
 import * as mongoose from 'mongoose';
 
 export const BlogSchema = new mongoose.Schema({
-    title:{
+    main_heading:{
         type: String,
         required: true
     },
@@ -9,8 +9,9 @@ export const BlogSchema = new mongoose.Schema({
         type: String
     },
     author:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'UsersModel'
+        // type: mongoose.Schema.Types.ObjectId,
+        // ref: 'UsersModel'
+        type: String
     },
     main_img:{
         type: String,
@@ -28,7 +29,7 @@ export const BlogSchema = new mongoose.Schema({
 
 
 export interface BlogDTO{
-    title: string,
+    main_heading: string,
     author?: string,
     main_img?: string,
     content?: any[],

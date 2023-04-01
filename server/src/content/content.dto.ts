@@ -1,38 +1,32 @@
 import * as mongoose from 'mongoose';
 
 export const ContentSchema = new mongoose.Schema({
-    title:{
+    type:{
         type: String,
         
     },
-    description:{
-        type: String
+    pos:{
+        type: Number
     },
     blog:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'BlogModel',
         required:true
     },
-    sec_img:{
-        type: String,
-        
-    },
-    list:[{
+    value: {
         type: String
-    }],
-    link:{
-        type:String
-    }
+    },
+    
     
 }, {timestamps: true});
 
 
 export interface ContentDTO{
-    title: string,
-    description?:string,
+    type: string,
+    pos: number, 
     blog: string,
-    sec_img: string,
-    list: string[],
-    link: string
+    value: string,
+   
+ 
  
 }

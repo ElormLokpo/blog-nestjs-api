@@ -7,8 +7,8 @@ import { ContentDTO } from './content.dto';
 export class ContentService{
     constructor( @InjectModel('ContentModel') private readonly contentmodel:Model<ContentDTO>,){}
 
-    async createContent(blogid:string, title: string, description:string, blog:string, sec_img:string, list:string[], link:string){
-        const contentData = await this.contentmodel.create({title, description, blog, sec_img, list, link});
+    async createContent(type: string, pos:number, blog:string, value:string){
+        const contentData = await this.contentmodel.create({type, pos, blog, value});
         return contentData;
     }
 
@@ -22,8 +22,8 @@ export class ContentService{
         return contentData;
     }
 
-    async updateContent(id:string,title: string, description:string, blog:string, sec_img:string, list:string[], link:string){
-        const contentData = await this.contentmodel.findByIdAndUpdate(id, {title, description, blog, sec_img, list, link}, {new:true});
+    async updateContent(id:string,type: string, pos:number, blog:string, value:string){
+        const contentData = await this.contentmodel.findByIdAndUpdate(id, {type, pos, blog, value}, {new:true});
         return contentData;
     }
 

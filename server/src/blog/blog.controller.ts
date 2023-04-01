@@ -26,13 +26,13 @@ export class BlogController{
 
     @Post('add')
     async createBlog(
-        @Body('title') title:string,
+        @Body('main_heading') main_heading:string,
         @Body('author') author:string,
         @Body('main_img') main_img:string,
         @Body('content') content: any[],
         @Body('description') description:string
     ){
-        const blogData = await this.blogservice.createBlog(title,author, main_img, content, description)
+        const blogData = await this.blogservice.createBlog(main_heading,author, main_img, content, description)
         return blogData;
     }
 
@@ -47,13 +47,13 @@ export class BlogController{
     @Patch(':id')
     async updateBlog(
         @Param('id') id:string,
-        @Body('title') title:string,
+        @Body('main_heading') main_heading:string,
         @Body('author') author:string,
         @Body('main_img') main_img:string,
         @Body('content') content: any[],
         @Body('description') description:string
     ){
-        const blogData = await this.blogservice.updateBlog(id,title,author, main_img, content, description)
+        const blogData = await this.blogservice.updateBlog(id,main_heading,author, main_img, content, description)
         return blogData;
     }
 

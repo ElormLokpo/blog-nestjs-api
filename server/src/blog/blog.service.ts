@@ -7,8 +7,8 @@ import { BlogDTO  } from './blog.dto';
 export class BlogService{
     constructor( @InjectModel('BlogModel') private readonly blogmodel: Model<BlogDTO> ){}
 
-    async createBlog(title: string, author:string, main_img:string, content: any[], description:string){
-        const blogData = await this.blogmodel.create({title, author, main_img, content, description});
+    async createBlog(main_heading: string, author:string, main_img:string, content: any[], description:string){
+        const blogData = await this.blogmodel.create({main_heading, author, main_img, content, description});
         return blogData;
     }
 
@@ -28,8 +28,8 @@ export class BlogService{
         return blogData;
     }
 
-    async updateBlog(id:string,title: string, author:string, main_img:string, content: any[], description:string){
-        const blogData = await this.blogmodel.findByIdAndUpdate(id, {title, author, main_img, content, description}, {new:true});
+    async updateBlog(id:string,main_heading: string, author:string, main_img:string, content: any[], description:string){
+        const blogData = await this.blogmodel.findByIdAndUpdate(id, {main_heading, author, main_img, content, description}, {new:true});
         return blogData;
     }
 

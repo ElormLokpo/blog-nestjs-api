@@ -24,16 +24,14 @@ export class ContentController{
 
     @Post('add')
     async createContent(
-        @Body('title') title:string,
-        @Body('description') description:string,
+        @Body('type') type:string,
+        @Body('post') pos:number,
         @Body('blog') blog:string,
-        @Body('sec_img') sec_img:string,
-        @Body('list') list:string[],
-        @Body('link') link:string,
-        @Body('blogid') blogid:string
+        
+        @Body('blogid') value:string
 
     ){
-        const contentData = await this.contentservice.createContent(blogid, title, description, blog, sec_img, list, link)
+        const contentData = await this.contentservice.createContent(type, pos, blog, value)
         const contentToBlog = await this.blogservice.addContentToBlog(contentData._id, contentData.blog)
         return contentData;
     }
@@ -49,14 +47,13 @@ export class ContentController{
     @Patch(':id')
     async updateContent(
         @Param('id') id:string,
-        @Body('title') title:string,
-        @Body('description') description:string,
+        @Body('type') type:string,
+        @Body('post') pos:number,
         @Body('blog') blog:string,
-        @Body('sec_img') sec_img:string,
-        @Body('list') list:string[],
-        @Body('link') link:string
+        
+        @Body('blogid') value:string
     ){
-        const contentData = await this.contentservice.updateContent(id,title, description, blog, sec_img, list, link)
+        const contentData = await this.contentservice.updateContent(id,type, pos, blog, value)
         return contentData;
     }
 
