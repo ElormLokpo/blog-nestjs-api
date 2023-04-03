@@ -1,23 +1,28 @@
 import React, {useState} from 'react';
-import axios from '../../services/axios/axios'
+import axios from '../../services/axios/axios';
+import { storeCurrentBlog } from '../../services/redux/slices/currentBlogSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 interface CurrentI{
   pos?: number,
   type: any, 
-  value: any
+  value: any,
+  blog?: any
 }
 
 function AddBlogContent() {
     const [contentType, setContentType] = useState('paragraph')
-    const [currentState, setCurrentState] = useState<CurrentI>({pos:0, type:'', value:'' });
+    const [currentState, setCurrentState] = useState<CurrentI>({pos:0, type:'', value:'', blog: '' });
     const [counter, setCounter] = useState(0);
     const [showContent, setShowContent] = useState<boolean>(false);
     const [showCreateBlog, setShowCreateBlog] = useState<boolean>(true);
     const [description, setDescription] = useState<string>();
     const [mainHeading, setMainHeading] = useState<string>();
+    const [renderBlogContent, setRenderBlogContent] = useState<any[]>([]);
     // const [mainHeading, setMainHeading] = useState<string>('');
     // const [paragraph, setParagraph] = useState<string>('');
 
+    const dispatch = useDispatch();
 
     let backgroundImg:string =  "https://images.unsplash.com/photo-1679499065391-00d02902d1eb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
 
@@ -51,10 +56,20 @@ function AddBlogContent() {
       setContentType(e.target.value);
     }
 
-    const handleSubmit = ()=>{
+    let currentBlog = useSelector((state:any)=>state.currentBlogS.value.currentBlog);
+
+    const handleAddContent = ()=>{
         setCounter(counter+1);
         currentState.pos = counter;
+        currentState.blog = currentBlog;
         console.log('CURRENT STATE', currentState);
+
+        axios.post('/content/add', currentState)
+        .then(res=>{
+          console.log(res.data);
+          setRenderBlogContent([...renderBlogContent, res.data]);
+        
+        })
     }
 
     const handleStartBlog = ()=>{
@@ -66,12 +81,14 @@ function AddBlogContent() {
            description
         })
         .then(res=>{
-          console.log(res.data);
+          console.log(res.data._id);
+          dispatch(storeCurrentBlog(res.data._id));
           setShowContent(true);
           setShowCreateBlog(false);
         })
     }
 
+    console.log(renderBlogContent);
     
 
   
@@ -151,7 +168,7 @@ function AddBlogContent() {
             </div>
 
             <div className='flex justify-end'>
-                <button className='text-sm bg-black text-white px-10 py-2' onClick = {handleSubmit}>Add</button>
+                <button className='text-sm bg-black text-white px-10 py-2' onClick = {handleAddContent}>Add</button>
             </div>
           </div> </div>
           : <p> </p>

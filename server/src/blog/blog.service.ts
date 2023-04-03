@@ -7,8 +7,8 @@ import { BlogDTO  } from './blog.dto';
 export class BlogService{
     constructor( @InjectModel('BlogModel') private readonly blogmodel: Model<BlogDTO> ){}
 
-    async createBlog(main_heading: string, author:string, main_img:string, content: any[], description:string){
-        const blogData = await this.blogmodel.create({main_heading, author, main_img, content, description});
+    async createBlog(main_heading: string, author:string, main_img:string, description:string){
+        const blogData = await this.blogmodel.create({main_heading, author, main_img, content:[], description});
         return blogData;
     }
 
@@ -41,6 +41,8 @@ export class BlogService{
     
     async addContentToBlog(contetnid:any, blogid:any){
         const blogData = await this.blogmodel.findById(blogid);
+
+      
 
         let currentContent = [...blogData.content];
         currentContent.push(contetnid);

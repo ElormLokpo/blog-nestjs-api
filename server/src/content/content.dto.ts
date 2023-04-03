@@ -11,7 +11,7 @@ export const ContentSchema = new mongoose.Schema({
     blog:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'BlogModel',
-        required:true
+        
     },
     value: {
         type: String

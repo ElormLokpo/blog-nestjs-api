@@ -25,10 +25,9 @@ export class ContentController{
     @Post('add')
     async createContent(
         @Body('type') type:string,
-        @Body('post') pos:number,
+        @Body('pos') pos:number,
         @Body('blog') blog:string,
-        
-        @Body('blogid') value:string
+        @Body('value') value:string
 
     ){
         const contentData = await this.contentservice.createContent(type, pos, blog, value)
