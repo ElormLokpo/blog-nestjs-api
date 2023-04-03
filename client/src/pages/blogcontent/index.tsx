@@ -90,6 +90,20 @@ function AddBlogContent() {
 
     console.log(renderBlogContent);
     
+   let renderContentData;
+
+   if (renderBlogContent.length> 0){
+      renderContentData = renderBlogContent.map(i=>{
+        if (i.type == 'paragraph'){
+            return <p className='text-sm mb-10 leading-7'>p{i.value}</p>
+        } else if(i.type ='sub-heading'){
+            return <p className='font-semibold text-lg mb-3'>{i.value}</p>
+        }
+      })
+   }else {
+    renderContentData = <p>No Content yet...</p>
+   }
+    
 
   
   return (
@@ -142,35 +156,39 @@ function AddBlogContent() {
         {
           showContent?
           <div>
-          <p className='font-bold text-lg mb-5'>Add Content (In the order in you want them to show on your blog page)</p>
-
-          <div>
-
-            <div className='flex flex-col mb-6'>
-              <label className='text-xs mb-2'>Type:</label>
-              <select className='text-sm px-6 py-2 border' onChange={handleChange}>
-                  <option className='py-2' value = 'sub-heading'>Sub Heading</option>
-                  <option className='py-2' value = 'paragraph'>Paragraph</option>
-                  <option className='py-2' value = 'main-img'>Main Image</option>
-                  <option className='py-2' value = 'img'>Image</option>
-                  <option className='py-2' value = ''>List</option>
-              </select>
+            <div className='mb-5'>
+                {renderContentData}
             </div>
 
-            <div className='mb-6'>
-             
-              <div className='flex flex-col'>
-                <label className='text-xs mb-3'>Content:</label>
+            <p className='font-bold text-lg mb-5'>Add Content (In the order in you want them to show on your blog page)</p>
 
-                { renderContent }
-              
+            <div>
+
+              <div className='flex flex-col mb-6'>
+                <label className='text-xs mb-2'>Type:</label>
+                <select className='text-sm px-6 py-2 border' onChange={handleChange}>
+                    <option className='py-2' value = 'sub-heading'>Sub Heading</option>
+                    <option className='py-2' value = 'paragraph'>Paragraph</option>
+                    <option className='py-2' value = 'main-img'>Main Image</option>
+                    <option className='py-2' value = 'img'>Image</option>
+                    <option className='py-2' value = ''>List</option>
+                </select>
               </div>
-            </div>
 
-            <div className='flex justify-end'>
-                <button className='text-sm bg-black text-white px-10 py-2' onClick = {handleAddContent}>Add</button>
-            </div>
-          </div> </div>
+              <div className='mb-6'>
+              
+                <div className='flex flex-col'>
+                  <label className='text-xs mb-3'>Content:</label>
+
+                  { renderContent }
+                
+                </div>
+              </div>
+
+              <div className='flex justify-end'>
+                  <button className='text-sm bg-black text-white px-10 py-2' onClick = {handleAddContent}>Add</button>
+              </div>
+            </div> </div>
           : <p> </p>
 
         }
