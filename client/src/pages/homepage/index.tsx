@@ -32,12 +32,12 @@ const HomePage = ()=> {
           </div>
         </div>
 
-        <div className='mb-12'>
+        {/* <div className='mb-12'>
             <p className='font-bold text-lg mb-5'>Blog Posts</p>
 
             <div className='grid grid-cols-4 gap-3 mb-2'>
               {
-                [1,2,3,4].map(()=><Card />)
+                [1,2,3,4].map(()=><Card heading =  />)
               }      
             </div>
 
@@ -46,7 +46,7 @@ const HomePage = ()=> {
                 [1,2,3,4].map(()=><Card />)
               }      
             </div>
-        </div>
+        </div> */}
 
         <div className='mb-20'>
             <div className='flex'>

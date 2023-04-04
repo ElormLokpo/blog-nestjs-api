@@ -16,8 +16,8 @@ function AddBlogContent() {
     const [counter, setCounter] = useState(0);
     const [showContent, setShowContent] = useState<boolean>(false);
     const [showCreateBlog, setShowCreateBlog] = useState<boolean>(true);
-    const [description, setDescription] = useState<string>();
-    const [mainHeading, setMainHeading] = useState<string>();
+    const [description, setDescription] = useState<string>('Describe your blog in a few words');
+    const [mainHeading, setMainHeading] = useState<string>('Main Heading');
     const [renderBlogContent, setRenderBlogContent] = useState<any[]>([]);
     // const [mainHeading, setMainHeading] = useState<string>('');
     // const [paragraph, setParagraph] = useState<string>('');
@@ -76,7 +76,7 @@ function AddBlogContent() {
         axios.post('/blog/add', {
            main_heading: mainHeading,
            author : 'Sample Author 1',
-           main_img: 'Skrrrrr',
+          
            content : [],
            description
         })
@@ -95,9 +95,9 @@ function AddBlogContent() {
    if (renderBlogContent.length> 0){
       renderContentData = renderBlogContent.map(i=>{
         if (i.type == 'paragraph'){
-            return <p className='text-sm mb-10 leading-7'>p{i.value}</p>
+            return <p className='text-sm mb-10 leading-7'>{i.value}</p>
         } else if(i.type ='sub-heading'){
-            return <p className='font-semibold text-lg mb-3'>{i.value}</p>
+            return <p className='font-semibold text-lg mb-3'>s{i.value}</p>
         }
       })
    }else {
@@ -124,8 +124,8 @@ function AddBlogContent() {
                 <p>Josh Oteng</p>
               </div>
 
-              <p className='text-2xl font-semibold mb-1 tracking-tighter'>Main Blog Title</p>
-              <p className='text-sm'>Blog Decription.</p>
+              <p className='text-2xl font-semibold mb-1 tracking-tighter'>{mainHeading}</p>
+              <p className='text-sm'>{description}</p>
           </div>
         
         </div>

@@ -1,12 +1,37 @@
-import React from 'react'
+import React from 'react';
+import { clickCurrentBlog } from '../../services/redux/slices/currentBlogSlice';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-function Card() {
+
+type UserType = {
+    main_heading: string,
+    description: string,
+    main_img: string,
+    _id: any
+};
+
+interface PropsI{
+    content: UserType
+}
+
+
+function Card(props:PropsI) {
     let cardImg: string = "https://images.unsplash.com/photo-1679047108999-9403948c0f76?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80";
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+
+    const handleToBlog = ()=>{
+        dispatch(clickCurrentBlog(props.content._id));
+        navigate('/main/blog');
+    }
+
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col hover:cursor-pointer' onClick = {handleToBlog}>
         <div className='mb-3 card-img-container'>
-            <img src = {cardImg} className = 'card-img'/>
+            <img src = {props.content.main_img} className = 'card-img'/>
         </div> 
 
 
@@ -18,8 +43,8 @@ function Card() {
                     <p>Josh Oteng</p>
                 </div>
 
-                <p className='text-md font-semibold mb-1 tracking-tighter'>Some Really Big Text Apparently</p>
-                <p className='text-sm leading-6'>Torem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti Torem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.</p>
+                <p className='text-md font-semibold mb-1 tracking-tighter'>{props.content.main_heading}</p>
+                <p className='text-sm leading-6'>{props.content.description}</p>
             </div>
         </div>
     </div>

@@ -8,6 +8,7 @@ function Nav() {
            <div className='text-sm inline-flex gap-2'>
               <NavLink to = ''>Home</NavLink>
               <NavLink to = 'add'>Write Blog</NavLink>
+              <NavLink to = 'blogs'> All Blogs </NavLink>
               <NavLink to = 'blog'>My Blogs</NavLink>
               <NavLink to = '/signup' >Sign Up</NavLink>
               <NavLink to = '/signin' >Sign In</NavLink>

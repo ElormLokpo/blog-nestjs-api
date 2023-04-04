@@ -7,6 +7,7 @@ import AddBlogContent from '../pages/blogcontent';
 import Main from '../pages/main';
 
 import { BrowserRouter ,Route, Routes} from 'react-router-dom';
+import BlogList from '../pages/bloglist';
 
 
 
@@ -20,6 +21,7 @@ function MainRoute() {
               <Route element = {<HomePage />} path = '' index/>
               <Route element = {<BlogPage />} path = 'blog'/>
               <Route element = {<AddBlogContent />} path = 'add'/>
+              <Route element = {<BlogList />} path = 'blogs' />
             </Route>
            
 
