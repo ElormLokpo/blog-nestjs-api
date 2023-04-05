@@ -9,7 +9,7 @@ function BlogList() {
         axios.get('/blog')
         .then(res=>{
             setBlogList(res.data);
-            console.log(bloglist);
+        
         });
     },[bloglist]);
   return (
