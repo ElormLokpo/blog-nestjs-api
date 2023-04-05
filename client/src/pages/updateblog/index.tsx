@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import { useSelector } from 'react-redux';
 import axios from '../../services/axios/axios';
 import { AiFillEdit } from 'react-icons/ai';
+import { AiFillCheckCircle } from 'react-icons/ai';
+
 
 
 function UpdateBlog() {
@@ -10,6 +12,7 @@ function UpdateBlog() {
     const [content, setContent] = useState([]);
     const [mainImg, setMainImg] = useState<string>('https://images.unsplash.com/photo-1679499065391-00d02902d1eb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80')
     const [description, setDescription] = useState<string>('Description');
+    const [newContent, setNewContent] = useState<any>();
 
     let backgroundImg:string =  "https://images.unsplash.com/photo-1679499065391-00d02902d1eb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
     let sectionImg: string = "https://images.unsplash.com/photo-1672243776760-67aec979f591?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
@@ -31,12 +34,26 @@ function UpdateBlog() {
 
     let renderContentData;
 
+    const handleUpdateContent = (i:any)=>{
+      
+      axios.patch(`/content/${i._id}`, {value:newContent})
+      .then(res=>{
+       
+      })
+    }
+
     if (content.length > 0){
         renderContentData = content.map((i:any)=>{
           if (i.type == 'paragraph'){
-              return <div className='mb-5'> <textarea className='text-sm border w-full p-3' value = {i.value} rows={10} />  </div>
+              return <div className='mb-5'> 
+                  <textarea className='text-sm border w-full p-3' defaultValue = {i.value} rows={10} onChange = {e=>setNewContent(e.target.value)}/> 
+                  <button className='bg-sky-400 text-xs py-2 px-3 text-white inline-flex gap-2 items-center' onClick = {()=>handleUpdateContent(i)}>Update <AiFillCheckCircle /></button>
+               </div>
           } else if(i.type ='sub-heading'){
-              return <input type = 'text' className='font-semibold mb-3 border p-2' value = {i.value} />
+              return <div className='mb-5'>
+                <textarea className='font-semibold border p-2 w-full' defaultValue = {i.value} rows={5}  onChange = {e=>setNewContent(e.target.value)}/>
+                <button className='bg-sky-400 text-xs py-2 px-3 text-white inline-flex gap-2 items-center' onClick = {()=>handleUpdateContent(i)}>Update <AiFillCheckCircle /></button>
+              </div>
           }
         })
     }else {

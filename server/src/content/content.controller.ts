@@ -47,10 +47,9 @@ export class ContentController{
     async updateContent(
         @Param('id') id:string,
         @Body('type') type:string,
-        @Body('post') pos:number,
+        @Body('pos') pos:number,
         @Body('blog') blog:string,
-        
-        @Body('blogid') value:string
+        @Body('value') value:string
     ){
         const contentData = await this.contentservice.updateContent(id,type, pos, blog, value)
         return contentData;

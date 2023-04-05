@@ -22,7 +22,7 @@ function BlogPage() {
     useEffect(()=>{
       axios.get(`/blog/${clickBlog}`)
       .then(res=>{
-        console.log('RIGHT NOW BLOG',res.data);
+       
         setBlogData(res.data);
         setMainHeading(res.data.main_heading);
         setContent(res.data.content);
@@ -39,7 +39,7 @@ function BlogPage() {
           if (i.type == 'paragraph'){
               return <p className='text-sm mb-10 leading-7'>{i.value}</p>
           } else if(i.type ='sub-heading'){
-              return <p className='font-semibold text-lg mb-3'>s{i.value}</p>
+              return <p className='font-semibold text-lg mb-3'>{i.value}</p>
           }
         })
     }else {
