@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import { useSelector } from 'react-redux';
 import axios from '../../services/axios/axios';
+import { AiFillEdit } from 'react-icons/ai';
+import UpdateBlog from '../updateblog';
+
 
 
 function BlogPage() {
@@ -9,6 +12,7 @@ function BlogPage() {
     const [content, setContent] = useState([]);
     const [mainImg, setMainImg] = useState<string>('https://images.unsplash.com/photo-1679499065391-00d02902d1eb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80')
     const [description, setDescription] = useState<string>('Description');
+    const [isUpdate, setIsUpdate] = useState<boolean>(false);
 
     let backgroundImg:string =  "https://images.unsplash.com/photo-1679499065391-00d02902d1eb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
     let sectionImg: string = "https://images.unsplash.com/photo-1672243776760-67aec979f591?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
@@ -42,39 +46,54 @@ function BlogPage() {
       renderContentData = <p>No Content yet...</p>
     }
 
-
+    const handleUpdateContent = ()=>{
+      setIsUpdate(true);
+    }
   return (
     <div>
       {
         blogData?
-          <div>
-            <div className='header-section mb-24' style = {{
-        backgroundImage: `url(${mainImg})`
-      }}>
+      <div>
+        {
+          isUpdate?<></>:
+             <div className='header-section mb-24' style = {{backgroundImage: `url(${mainImg})` }}>
       
-      <div className='wrapper flex items-end'>
-        
-        <div className='flex flex-col text-white p-5 mb-16'>
-            <div className='inline-flex gap-1 text-xs font-light'>
-              <p className=''>31st March 2023</p>
-              <p>.</p>
-              <p>Josh Oteng</p>
-            </div>
+             <div className='wrapper flex items-end'>
+               
+               <div className='flex flex-col text-white p-5 mb-16'>
+                   <div className='inline-flex gap-1 text-xs font-light'>
+                     <p className=''>31st March 2023</p>
+                     <p>.</p>
+                     <p>Josh Oteng</p>
+                   </div>
 
-            <p className='text-2xl font-semibold mb-1 tracking-tighter'>{mainHeading}</p>
-            <p className='text-sm'>{description}</p>
-        </div>
-      
-      </div>
-    </div>
+                   <p className='text-2xl font-semibold mb-1 tracking-tighter'>{mainHeading}</p>
+                   <p className='text-sm'>{description}</p>
+               </div>
+             
+             </div>
+           </div>
+        }
+           
 
       <div className='mb-10'>
-       {renderContentData}
+        <button className='text-sm py-1 px-3 bg-black text-white inline-flex gap-2 items-center' onClick={handleUpdateContent}> Edit Blog <AiFillEdit /> </button>
       </div>
+
+      { isUpdate?
+        <div>
+          <UpdateBlog />
+        </div>:
+        <div className='mb-10'>
+          {renderContentData}
+        </div>
+      }
+
+      
 
       
       
-         <div className='mb-10'>
+         {/* <div className='mb-10'>
             <p className='font-semibold text-lg mb-3'>Sub Heading</p>
 
             <p className='mb-10'>
@@ -83,7 +102,7 @@ function BlogPage() {
 
        
 
-          </div>
+          </div> */}
         </div>
 
         :<p>No Data yet</p>
