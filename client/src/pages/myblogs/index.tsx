@@ -5,7 +5,9 @@ import { clickCurrentBlog } from '../../services/redux/slices/currentBlogSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-function BlogList() {
+
+function MyBlogsPage() {
+ 
     const [bloglist, setBlogList] = useState([]);
 
     useEffect(()=>{
@@ -16,6 +18,7 @@ function BlogList() {
         });
     },[bloglist]);
 
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -24,11 +27,10 @@ function BlogList() {
       navigate('/blog');
     }
 
-
   return (
     <div>
         <div className='mb-12'>
-            <p className='font-bold text-lg mb-5'>Blog Posts</p>
+            <p className='font-bold text-lg mb-5'>My Blog Posts</p>
 
             <div className='grid grid-cols-4 gap-3 mb-2'>
               {
@@ -44,6 +46,7 @@ function BlogList() {
         </div>
     </div>
   )
+  
 }
 
-export default BlogList
+export default MyBlogsPage

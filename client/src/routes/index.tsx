@@ -8,6 +8,7 @@ import Main from '../pages/main';
 
 import { BrowserRouter ,Route, Routes} from 'react-router-dom';
 import BlogList from '../pages/bloglist';
+import MyBlogsPage from '../pages/myblogs';
 
 
 
@@ -17,11 +18,12 @@ function MainRoute() {
         <Routes>
             <Route element = {<SignUp />} path = 'signup'/>
             <Route element = {<SignIn />} path = 'signin'/>
-            <Route element = {<Main />} path='main'>
+            <Route element = {<Main />} path=''>
               <Route element = {<HomePage />} path = '' index/>
               <Route element = {<BlogPage />} path = 'blog'/>
               <Route element = {<AddBlogContent />} path = 'add'/>
               <Route element = {<BlogList />} path = 'blogs' />
+              <Route element = {<MyBlogsPage />} path = 'myblogs' />
             </Route>
            
 
