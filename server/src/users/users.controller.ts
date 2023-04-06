@@ -8,9 +8,10 @@ export class UserController{
     @Post('register')
     async register(
         @Body('username') username:string, 
-        @Body('password') password:string
+        @Body('password') password:string,
+        @Body('fullname') fullname:string
         ){
-        const userdata = await this.userservice.registerUser(username,password);
+        const userdata = await this.userservice.registerUser(username,password, fullname);
         return userdata;
     }
 

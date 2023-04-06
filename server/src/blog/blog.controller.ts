@@ -5,9 +5,10 @@ import {
     Body,
     Param,
     Delete,
-    Patch
-
+    Patch,
+    UseGuards
 } from '@nestjs/common';
+import { JwtGuard } from 'src/auth/jwtguard';
 import { BlogService } from "./blog.service";
 //import { ContentService } from 'src/content/content.service';
 
@@ -24,6 +25,7 @@ export class BlogController{
         return blogData;
     }
 
+    @UseGuards(JwtGuard)
     @Post('add')
     async createBlog(
         @Body('main_heading') main_heading:string,
@@ -44,6 +46,7 @@ export class BlogController{
         return blogData;
     }
 
+    @UseGuards(JwtGuard)
     @Patch(':id')
     async updateBlog(
         @Param('id') id:string,
@@ -57,6 +60,7 @@ export class BlogController{
         return blogData;
     }
 
+    @UseGuards(JwtGuard)
     @Delete(':id')
     async deleteBlog(
         @Param('id') id:string

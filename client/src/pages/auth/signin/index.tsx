@@ -1,6 +1,28 @@
-import React from 'react'
+import React, {useState} from 'react';
+import axios from '../../../services/axios/axios';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { storeUserData, storeToken } from '../../../services/redux/slices/currentUserSlice';
 
 function SignIn() {
+
+    const [username, setUsername] = useState<string>();
+    const [password, setPassword] = useState<string>();
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const handleSubmit = ()=>{
+        axios.post('/auth/login', {username, password})
+        .then(res=>{
+            console.log(res.data);
+            dispatch(storeToken(res.data.token));
+            dispatch(storeUserData(res.data.user));
+            navigate('/')
+        })
+        console.log(username, password)
+    }
+
   return (
     <div className='flex flex-col items-center justify-center h-full'>
         <div className='flex justify-center mb-7'>
@@ -12,12 +34,12 @@ function SignIn() {
 
             <div className='flex flex-col mb-6'>
                 <label className='text-xs mb-2'>Email:</label>
-                <input type = 'text' className='border py-2'/>
+                <input type = 'text' className='border py-2 px-1' onChange = {e=>setUsername(e.target.value)}/>
             </div>
 
             <div className='flex flex-col mb-6'>
                 <label className='text-xs mb-2'>Password:</label>
-                <input type = 'text' className='border py-2'/>
+                <input type = 'password' className='border py-2 px-1' onChange = {e=>setPassword(e.target.value)}/>
             </div>
 
             <div className='mb-9'>
@@ -25,7 +47,7 @@ function SignIn() {
             </div>
 
             <div className='mb-5'>
-                <button className='py-3 bg-sky-500 text-sm w-full text-white'>Sign In</button>
+                <button className='py-3 bg-sky-500 text-sm w-full text-white' onClick={handleSubmit}>Sign In</button>
             </div>
 
             <div>

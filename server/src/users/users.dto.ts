@@ -2,6 +2,10 @@ import * as mongoose from 'mongoose';
 const bcrypt = require('bcrypt');
 
 export const UserSchema = new mongoose.Schema({
+    fullname:{
+        type:String,
+        required:true
+    },
     username:{
         type: String,
         required: true
@@ -21,6 +25,7 @@ UserSchema.pre('save', async function(){
 
 export interface UserInterface{
     username:string,
-    password:string
+    password:string,
+    fullname: string
 }
 
