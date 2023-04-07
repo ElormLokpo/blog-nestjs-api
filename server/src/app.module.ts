@@ -14,7 +14,7 @@ import { AuthModule } from './auth/auth.module';
     ConfigModule.forRoot({
       isGlobal:true
     }),
-    MongooseModule.forRoot(''),
+    MongooseModule.forRoot('ss'),
     BlogModule,
     ContentModule,
     CommentsModule,
