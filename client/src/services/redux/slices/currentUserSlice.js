@@ -13,10 +13,10 @@ const CurrentUserSlice = createSlice({
     initialState,
     reducers:{
         storeUserData(store, action){
-            store.userData = action.payload
+            store.value.userData = action.payload
         },
         storeToken(store, action){
-            store.token = action.payload
+            store.value.token = action.payload
         }
     }
 })

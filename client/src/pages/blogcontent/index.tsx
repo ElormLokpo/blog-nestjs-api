@@ -57,14 +57,19 @@ function AddBlogContent() {
     }
 
     let currentBlog = useSelector((state:any)=>state.currentBlogS.value.currentBlog);
+    let currentToken = useSelector((state:any)=>state.currentUserS.value.token);
 
+    console.log('THIS IS TOKEN', currentToken);
     const handleAddContent = ()=>{
         setCounter(counter+1);
         currentState.pos = counter;
         currentState.blog = currentBlog;
         console.log('CURRENT STATE', currentState);
 
-        axios.post('/content/add', currentState)
+        axios.post('/content/add', currentState,{
+          headers:{
+            Authorization: `Bearer ${currentToken}`
+          }})
         .then(res=>{
           console.log(res.data);
           setRenderBlogContent([...renderBlogContent, res.data]);
@@ -79,6 +84,10 @@ function AddBlogContent() {
           
            content : [],
            description
+        },{
+          headers:{
+            Authorization: `Bearer ${currentToken}`
+          }
         })
         .then(res=>{
           console.log(res.data._id);
@@ -97,7 +106,7 @@ function AddBlogContent() {
         if (i.type == 'paragraph'){
             return <p className='text-sm mb-10 leading-7'>{i.value}</p>
         } else if(i.type ='sub-heading'){
-            return <p className='font-semibold text-lg mb-3'>s{i.value}</p>
+            return <p className='font-semibold text-lg mb-3'>{i.value}</p>
         }
       })
    }else {

@@ -17,13 +17,6 @@ interface PropsI{
 function Card(props:PropsI) {
     let cardImg: string = "https://images.unsplash.com/photo-1679047108999-9403948c0f76?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80";
 
-    
-
-    useEffect(()=>{
-        console.log('THIS IS PROPS', props);
-    },[]);
-
-    
 
   return (
     <div className='flex flex-col hover:cursor-pointer'>

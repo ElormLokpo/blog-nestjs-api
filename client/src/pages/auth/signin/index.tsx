@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from '../../../services/axios/axios';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,21 +8,25 @@ function SignIn() {
 
     const [username, setUsername] = useState<string>();
     const [password, setPassword] = useState<string>();
-
+   ;
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const handleSubmit = ()=>{
         axios.post('/auth/login', {username, password})
         .then(res=>{
-            console.log(res.data);
+            console.log('FROM BACK',res.data);
+           
+
             dispatch(storeToken(res.data.token));
             dispatch(storeUserData(res.data.user));
             navigate('/')
         })
-        console.log(username, password)
+       
     }
 
+  
+   
   return (
     <div className='flex flex-col items-center justify-center h-full'>
         <div className='flex justify-center mb-7'>
