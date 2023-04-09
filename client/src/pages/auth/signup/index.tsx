@@ -1,6 +1,9 @@
 import React, {useState} from 'react';
 import axios from '../../../services/axios/axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import {ToastContainer, toast} from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+
 
 
 function SignUp() {
@@ -14,12 +17,17 @@ function SignUp() {
         axios.post('/auth/register', {username, password, fullname})
         .then(res=>{
             navigate('/signin');
+        }).catch(err=>{
+            toast.error('Wrong Credentials',{
+                position: toast.POSITION.TOP_CENTER
+            });
         })
      
     }
 
   return (
     <div className='flex flex-col items-center justify-center h-full'>
+        <ToastContainer />
         <div className='flex justify-center mb-7'>
             <p className='text-3xl font-semibold mb-2 tracking-tighter'>Welcome</p>
         </div>
@@ -41,7 +49,7 @@ function SignUp() {
             </div>
 
             <div className='mb-9'>
-                <p className='text-blue-400 text-sm'>Already have an account? Sign In</p>
+                <Link to='/signin' className='text-blue-600 text-sm underline'>Already have an account? Sign In</Link>
             </div>
 
             <div className='mb-5'>

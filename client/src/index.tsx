@@ -2,11 +2,14 @@ import ReactDOM from 'react-dom';
 import './assets/styles/main.scss';
 import MainRoute from './routes';
 import { Provider } from 'react-redux';
-import {store} from './services/redux/store'
+import {store, persistedStore} from './services/redux/store'
+import { PersistGate } from 'redux-persist/integration/react';
 
 ReactDOM.render(
 <Provider store = {store}>
-    <MainRoute />
+    <PersistGate persistor = {persistedStore}>
+        <MainRoute />
+    </PersistGate>
 </Provider>
 
 , document.querySelector('#root'))

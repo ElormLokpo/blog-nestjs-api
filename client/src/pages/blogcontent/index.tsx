@@ -22,6 +22,8 @@ function AddBlogContent() {
     const [renderBlogContent, setRenderBlogContent] = useState<any[]>([]);
     const [imgUs, setImgUs] = useState('');
     const [mainImg, setMainImg] = useState('https://images.unsplash.com/photo-1679499065391-00d02902d1eb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80');
+    
+    //const [mainImg, setMainImg] = useState('https://images.unsplash.com/photo-1679499065391-00d02902d1eb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80');
     // const [mainHeading, setMainHeading] = useState<string>('');
     // const [paragraph, setParagraph] = useState<string>('');
 

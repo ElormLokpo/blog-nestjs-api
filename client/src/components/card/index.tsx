@@ -19,7 +19,7 @@ function Card(props:PropsI) {
 
 
   return (
-    <div className='flex flex-col hover:cursor-pointer'>
+    <div className='flex flex-col hover:cursor-pointer card-container'>
         <div className='mb-3 card-img-container'>
             <img src = {props.content.main_img} className = 'card-img'/>
         </div> 
@@ -34,7 +34,7 @@ function Card(props:PropsI) {
                 </div>
 
                 <p className='text-md font-semibold mb-1 tracking-tighter'>{props.content.main_heading}</p>
-                <p className='text-sm leading-6'>{props.content.description}</p>
+                <p className='text-sm leading-6 description'>{props.content.description}</p>
             </div>
         </div>
     </div>
