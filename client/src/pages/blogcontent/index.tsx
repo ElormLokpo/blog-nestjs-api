@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from '../../services/axios/axios';
 import { storeCurrentBlog } from '../../services/redux/slices/currentBlogSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import Axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 interface CurrentI{
   pos?: number,
@@ -28,9 +29,21 @@ function AddBlogContent() {
     // const [paragraph, setParagraph] = useState<string>('');
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    let currentBlog = useSelector((state:any)=>state.currentBlogS.value.currentBlog);
+    let currentToken = useSelector((state:any)=>state.currentUserS.value.token);
+    let currentLoginUser = useSelector((state:any)=>state.currentUserS.value.userData);
+     
+    
+    useEffect(()=>{
+      if(!currentLoginUser || !currentToken){
+        navigate('/signin');
+
+      }
+    }, [])
+
 
     let renderContent;
-
     const handleTextChange = (e:React.ChangeEvent<HTMLTextAreaElement>)=>{
         setCurrentState({type: contentType, value: e.target.value});
         
@@ -79,9 +92,8 @@ function AddBlogContent() {
       setContentType(e.target.value);
     }
 
-    let currentBlog = useSelector((state:any)=>state.currentBlogS.value.currentBlog);
-    let currentToken = useSelector((state:any)=>state.currentUserS.value.token);
-
+    
+    console.log('CURRENT USER ', currentLoginUser);
    
     const handleAddContent = ()=>{
         setCounter(counter+1);
@@ -122,7 +134,7 @@ function AddBlogContent() {
 
         axios.post('/blog/add', {
            main_heading: mainHeading,
-           author : 'Sample Author 1',
+           author : currentLoginUser._id,
            main_img: mainImg,
            content : [],
            description

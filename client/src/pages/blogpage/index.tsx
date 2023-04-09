@@ -13,6 +13,7 @@ function BlogPage() {
     const [mainImg, setMainImg] = useState<string>('https://images.unsplash.com/photo-1679499065391-00d02902d1eb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80')
     const [description, setDescription] = useState<string>('Description');
     const [isUpdate, setIsUpdate] = useState<boolean>(false);
+    const [author, setAuthor] = useState();
 
     let backgroundImg:string =  "https://images.unsplash.com/photo-1679499065391-00d02902d1eb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
     let sectionImg: string = "https://images.unsplash.com/photo-1672243776760-67aec979f591?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
@@ -28,6 +29,7 @@ function BlogPage() {
         setContent(res.data.content);
         setMainImg(res.data.main_img);
         setDescription(res.data.description);
+        setAuthor(res.data.author);
       })
     
     }, [])
@@ -51,6 +53,20 @@ function BlogPage() {
     const handleUpdateContent = ()=>{
       setIsUpdate(true);
     }
+
+    let renderEditButton;
+
+    let currentLoginUser = useSelector((state:any)=>state.currentUserS.value.userData);
+     
+    if(author == currentLoginUser._id){
+      renderEditButton = (
+        <div className='mb-10'>
+          <button className='text-sm py-1 px-3 bg-black text-white inline-flex gap-2 items-center' onClick={handleUpdateContent}> Edit Blog <AiFillEdit /> </button>
+        </div>
+      )
+    }
+    
+
   return (
     <div>
       {
@@ -78,9 +94,10 @@ function BlogPage() {
         }
            
 
-      <div className='mb-10'>
-        <button className='text-sm py-1 px-3 bg-black text-white inline-flex gap-2 items-center' onClick={handleUpdateContent}> Edit Blog <AiFillEdit /> </button>
-      </div>
+      {
+        renderEditButton        
+      }
+   
 
       { isUpdate?
         <div>

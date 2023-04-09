@@ -9,9 +9,9 @@ export const BlogSchema = new mongoose.Schema({
         type: String
     },
     author:{
-        // type: mongoose.Schema.Types.ObjectId,
-        // ref: 'UsersModel'
-        type: String
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'UsersModel'
+      
     },
     main_img:{
         type: String,

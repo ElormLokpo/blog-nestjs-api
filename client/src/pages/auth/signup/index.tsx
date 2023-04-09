@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from '../../../services/axios/axios';
 import { Link, useNavigate } from 'react-router-dom';
 import {ToastContainer, toast} from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import { useSelector } from 'react-redux';
 
 
 
@@ -12,6 +13,15 @@ function SignUp() {
     const [password, setPassword] = useState<string>();
 
     const navigate = useNavigate();
+
+    let currentLoginUser = useSelector((state:any)=>state.currentUserS.value.userData);
+     
+    useEffect(()=>{
+      if(currentLoginUser){
+        navigate('/');
+      }
+    }, [])
+
 
     const handleSubmit = ()=>{
         axios.post('/auth/register', {username, password, fullname})
@@ -28,8 +38,10 @@ function SignUp() {
   return (
     <div className='flex flex-col items-center justify-center h-full'>
         <ToastContainer />
-        <div className='flex justify-center mb-7'>
+        <div className='flex justify-center mb-7 flex-col items-center'>
             <p className='text-3xl font-semibold mb-2 tracking-tighter'>Welcome</p>
+            <Link to='/' className='text-sm font-light underline'>Back Home</Link>
+
         </div>
 
         <div className='w-2/6'>
@@ -48,7 +60,7 @@ function SignUp() {
                 <input type = 'password' className='border py-2 px-1' onChange = {e=>setPassword(e.target.value)}/>
             </div>
 
-            <div className='mb-9'>
+            <div className='mb-9 flex justify-center'>
                 <Link to='/signin' className='text-blue-600 text-sm underline'>Already have an account? Sign In</Link>
             </div>
 

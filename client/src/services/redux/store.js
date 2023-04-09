@@ -4,6 +4,7 @@ import currentUserSlice from './slices/currentUserSlice';
 import {combineReducers} from 'redux';
 import {persistStore, persistReducer} from 'redux-persist';
 import thunk from 'redux-thunk';
+import storage from 'redux-persist/lib/storage';
 
 const rootReducer = combineReducers({
     currentBlogS : CurrentBlogSlice,

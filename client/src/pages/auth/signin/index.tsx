@@ -15,6 +15,16 @@ function SignIn() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    
+    let currentLoginUser = useSelector((state:any)=>state.currentUserS.value.userData);
+     
+    useEffect(()=>{
+      if(currentLoginUser){
+        navigate('/');
+      }
+    }, [])
+
+
     const handleSubmit = ()=>{
         axios.post('/auth/login', {username, password})
         .then(res=>{
@@ -40,8 +50,9 @@ function SignIn() {
   return (
     <div className='flex flex-col items-center justify-center h-full'>
          <ToastContainer />
-        <div className='flex justify-center mb-7'>
-            <p className='text-3xl font-semibold mb-2 tracking-tighter'>Welcome Back</p>
+        <div className='flex justify-center mb-7 flex-col items-center'>
+            <p className='text-3xl font-semibold mb-1 tracking-tighter'>Welcome Back</p>
+            <Link to='/' className='text-sm font-light underline'>Back Home</Link>
         </div>
 
        
@@ -59,7 +70,7 @@ function SignIn() {
                 <input type = 'password' className='border py-2 px-1' onChange = {e=>setPassword(e.target.value)}/>
             </div>
 
-            <div className='mb-9'>
+            <div className='mb-9 flex justify-center'>
                 <Link className='text-blue-600 underline text-sm' to='/signup'>Don't have an account? Sign Up</Link>
             </div>
 
