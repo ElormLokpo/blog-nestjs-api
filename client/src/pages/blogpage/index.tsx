@@ -38,8 +38,10 @@ function BlogPage() {
         renderContentData = content.map((i:any)=>{
           if (i.type == 'paragraph'){
               return <p className='text-sm mb-10 leading-7'>{i.value}</p>
-          } else if(i.type ='sub-heading'){
+          } else if(i.type == 'sub-heading'){
               return <p className='font-semibold text-lg mb-3'>{i.value}</p>
+          }else if(i.type == 'img'){
+            return <img src = {i.value} className = 'card-img mb-4'/>
           }
         })
     }else {
@@ -89,20 +91,6 @@ function BlogPage() {
         </div>
       }
 
-      
-
-      
-      
-         {/* <div className='mb-10'>
-            <p className='font-semibold text-lg mb-3'>Sub Heading</p>
-
-            <p className='mb-10'>
-                <img src = {sectionImg} className = ''/>
-            </p>
-
-       
-
-          </div> */}
         </div>
 
         :<p>No Data yet</p>
