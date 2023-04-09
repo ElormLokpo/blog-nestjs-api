@@ -1,7 +1,9 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, {useState, useEffect} from 'react';
 import Card from '../../components/card';
-
+import axios from '../../services/axios/axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { clickCurrentBlog } from '../../services/redux/slices/currentBlogSlice';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage = ()=> {
 
@@ -11,6 +13,24 @@ const HomePage = ()=> {
   
     let currentToken = useSelector((state:any)=>state.currentUserS.value);
     console.log( 'CURRENT TOKEN', currentToken);
+
+    const [bloglist, setBlogList] = useState([]);
+
+    useEffect(()=>{
+        axios.get('/blog')
+        .then(res=>{
+            setBlogList(res.data);
+        
+        });
+    },[bloglist]);
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleToBlog = (i:any)=>{
+      dispatch(clickCurrentBlog(i._id));
+      navigate('/blog');
+    }
 
   return (
     <div>
@@ -36,21 +56,19 @@ const HomePage = ()=> {
           </div>
         </div>
 
-        {/* <div className='mb-12'>
+        <div className='mb-12'>
             <p className='font-bold text-lg mb-5'>Blog Posts</p>
 
             <div className='grid grid-cols-4 gap-3 mb-2'>
               {
-                [1,2,3,4].map(()=><Card heading =  />)
+                bloglist.length>0?
+                //bloglist.map((i:any)=><Card heading = {i.main_heading} desc = {i.description} img = {i.main_img} created= {i.createdAt}/>)
+                bloglist.map((i:any)=><div onClick = {()=>handleToBlog(i)}><Card content = {i}/></div>)
+                
+                :<p className='text-sm mt-10'>No blogs yet..</p>
               }      
             </div>
-
-            <div className='grid grid-cols-4 gap-3'>
-              {
-                [1,2,3,4].map(()=><Card />)
-              }      
-            </div>
-        </div> */}
+        </div>
 
         <div className='mb-20'>
             <div className='flex'>

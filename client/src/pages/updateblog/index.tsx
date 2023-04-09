@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import axios from '../../services/axios/axios';
 import { AiFillEdit } from 'react-icons/ai';
 import { AiFillCheckCircle } from 'react-icons/ai';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -14,12 +15,18 @@ function UpdateBlog() {
     const [description, setDescription] = useState<string>('Description');
     const [newContent, setNewContent] = useState<any>();
 
+  
     let backgroundImg:string =  "https://images.unsplash.com/photo-1679499065391-00d02902d1eb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
     let sectionImg: string = "https://images.unsplash.com/photo-1672243776760-67aec979f591?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
 
+    let navigate = useNavigate();
     let clickBlog = useSelector((state:any)=>state.currentBlogS.value.clickBlog);
+    let currentLoginUser = useSelector((state:any)=>state.currentUserS.value.userData);
+
 
     useEffect(()=>{
+
+     
       axios.get(`/blog/${clickBlog}`)
       .then(res=>{
         console.log('RIGHT NOW BLOG',res.data);
@@ -28,6 +35,12 @@ function UpdateBlog() {
         setContent(res.data.content);
         setMainImg(res.data.main_img);
         setDescription(res.data.description);
+
+        if(res.data._id !== currentLoginUser._id ){
+          navigate('/')
+        }
+
+
       })
     
     }, [])

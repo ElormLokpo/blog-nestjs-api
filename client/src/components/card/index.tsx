@@ -20,8 +20,8 @@ function Card(props:PropsI) {
 
   return (
     <div className='flex flex-col hover:cursor-pointer card-container'>
-        <div className='mb-3 card-img-container'>
-            <img src = {props.content.main_img} className = 'card-img'/>
+        <div className='mb-3 card-img-container' style = {{backgroundImage: `url(${props.content.main_img}})` }}>
+           
         </div> 
 
 
