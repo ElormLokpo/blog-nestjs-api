@@ -14,7 +14,7 @@ import { AuthModule } from './auth/auth.module';
     ConfigModule.forRoot({
       isGlobal:true
     }),
-    MongooseModule.forRoot(''),
+    MongooseModule.forRoot('mongodb+srv://benedict:benedict@cluster0.gstdo9d.mongodb.net/blognest'),
     BlogModule,
     ContentModule,
     CommentsModule,
